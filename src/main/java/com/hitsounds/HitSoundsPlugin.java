@@ -1,4 +1,4 @@
-package com.example;
+package com.hitsounds;
 
 import com.google.inject.Provides;
 import javax.inject.Inject;
@@ -14,40 +14,33 @@ import net.runelite.client.plugins.PluginDescriptor;
 
 @Slf4j
 @PluginDescriptor(
-	name = "Example"
+	name = "Hit Sounds",
+	description = "This plugin will send a custom sound on hitsplat",
+	tags = {"sound", "hitsplat", "max", "poison", "disease", "venom","damage","health"},
+	enabledByDefault = true
 )
-public class ExamplePlugin extends Plugin
+public class HitSoundsPlugin extends Plugin
 {
 	@Inject
 	private Client client;
 
 	@Inject
-	private ExampleConfig config;
+	private HitSoundsConfig config;
 
 	@Override
 	protected void startUp() throws Exception
 	{
-		log.info("Example started!");
+		log.info("Hit Sounds started!");
 	}
 
 	@Override
 	protected void shutDown() throws Exception
 	{
-		log.info("Example stopped!");
+		log.info("Hit Sounds stopped!");
 	}
-
-	@Subscribe
-	public void onGameStateChanged(GameStateChanged gameStateChanged)
-	{
-		if (gameStateChanged.getGameState() == GameState.LOGGED_IN)
-		{
-			client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Example says " + config.greeting(), null);
-		}
-	}
-
 	@Provides
-	ExampleConfig provideConfig(ConfigManager configManager)
+	HitSoundsConfig provideConfig(ConfigManager configManager)
 	{
-		return configManager.getConfig(ExampleConfig.class);
+		return configManager.getConfig(HitSoundsConfig.class);
 	}
 }
