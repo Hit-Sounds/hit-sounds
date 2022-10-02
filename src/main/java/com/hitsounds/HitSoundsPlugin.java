@@ -47,7 +47,7 @@ import java.io.*;
 @PluginDescriptor(
 	name = "Hit Sounds",
 	description = "This plugin will send a custom sound on hitsplat",
-	tags = {"sound", "hitsplat", "max", "poison", "disease", "venom","damage","health"},
+	tags = {"sound", "hitsplat", "max", "poison", "disease", "venom","damage", "health"},
 	enabledByDefault = true
 )
 public class HitSoundsPlugin extends Plugin
@@ -60,7 +60,7 @@ public class HitSoundsPlugin extends Plugin
 	private ClientThread clientThread;
 	private Clip clip = null;
 
-	private static final String BASE_DIRECTORY = System.getProperty("user.home") + "/.runelite/customhitsounds/";
+	private static final String BASE_DIRECTORY = System.getProperty("user.home") + "/.runelite/hitsounds/";
 	public static final File NORMAL_FILE = new File(BASE_DIRECTORY, "normal.wav");
 	public static final File MAX_FILE = new File(BASE_DIRECTORY, "max.wav");
 	public static final File POISON_FILE = new File(BASE_DIRECTORY, "poison.wav");
