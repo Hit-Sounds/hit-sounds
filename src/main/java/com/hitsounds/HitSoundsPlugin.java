@@ -59,14 +59,16 @@ public class HitSoundsPlugin extends Plugin
 	@Inject
 	private ClientThread clientThread;
 	private Clip clip = null;
-	public static final File NORMAL_FILE = new File(RuneLite.RUNELITE_DIR, "normal.wav");
-	public static final File MAX_FILE = new File(RuneLite.RUNELITE_DIR, "max.wav");
-	public static final File POISON_FILE = new File(RuneLite.RUNELITE_DIR, "poison.wav");
-	public static final File VENOM_FILE = new File(RuneLite.RUNELITE_DIR, "venom.wav");
-	public static final File DISEASE_FILE = new File(RuneLite.RUNELITE_DIR, "disease.wav");
-	public static final File MISS_FILE = new File(RuneLite.RUNELITE_DIR, "miss.wav");
-	public static final File HEALING_FILE = new File(RuneLite.RUNELITE_DIR, "healing.wav");
-	public static final File OTHER_FILE = new File(RuneLite.RUNELITE_DIR, "other.wav");
+
+	private static final String BASE_DIRECTORY = System.getProperty("user.home") + "/.runelite/customhitsounds/";
+	public static final File NORMAL_FILE = new File(BASE_DIRECTORY, "normal.wav");
+	public static final File MAX_FILE = new File(BASE_DIRECTORY, "max.wav");
+	public static final File POISON_FILE = new File(BASE_DIRECTORY, "poison.wav");
+	public static final File VENOM_FILE = new File(BASE_DIRECTORY, "venom.wav");
+	public static final File DISEASE_FILE = new File(BASE_DIRECTORY, "disease.wav");
+	public static final File MISS_FILE = new File(BASE_DIRECTORY, "miss.wav");
+	public static final File HEALING_FILE = new File(BASE_DIRECTORY, "healing.wav");
+	public static final File OTHER_FILE = new File(BASE_DIRECTORY, "other.wav");
 
 	private long lastClipMTime = CLIP_MTIME_UNLOADED;
 	private static final long CLIP_MTIME_UNLOADED = -2;
