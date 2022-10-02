@@ -1,4 +1,5 @@
-# Hit Sounds 
+# ![icon](https://user-images.githubusercontent.com/5789682/193467495-4ce7e066-31d6-4caf-a50f-bdc18c935d67.png) Hit Sounds ![icon](https://user-images.githubusercontent.com/5789682/193467495-4ce7e066-31d6-4caf-a50f-bdc18c935d67.png)
+
 This plugin will make a sound on hitsplat.
 
 ## Adding a custom sound
