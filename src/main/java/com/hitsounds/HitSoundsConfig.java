@@ -195,7 +195,7 @@ public interface HitSoundsConfig extends Config
 			"1b. You can right-click the screenshot button in the top right of the runelite client.\n" +
 			"1c. Then open screenshot folder, and navigate to the .runelite directory.\n" +
 			"2. Create a folder called 'hitsounds'.\n" +
-			"2. Add your sound as a {category}.wav file in /.runelite/hitsounds/ .\n" +
+			"3. Add your sound as a {category}.wav file in /.runelite/hitsounds/ .\n" +
 			"\n" +
 			"Acceptable File Names:\n" +
 			"normal.wav\n" +
