@@ -23,7 +23,7 @@ dependencies {
 	testImplementation group: 'net.runelite', name:'jshell', version: runeLiteVersion
 }
 
-group = 'com.example'
+group = 'com.hitsounds'
 version = 'v1.0.0'
 sourceCompatibility = '1.8'
 

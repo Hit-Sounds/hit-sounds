@@ -1,10 +1,10 @@
 package com.hitsounds.enums;
 
 import com.hitsounds.HitSoundsPlugin;
-
-import java.io.File;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+
+import java.io.File;
 
 @Getter
 @RequiredArgsConstructor
