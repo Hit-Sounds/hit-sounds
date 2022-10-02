@@ -3,8 +3,15 @@
 This plugin will make a sound on hitsplat.
 
 ## Adding a custom sound
-1. Navigate to your `.runelite` folder
-2. Add your sound as a `{category}.wav` file.
+1. Navigate to your .runelite folder
+
+2. You can right-click the screenshot button in the top right of the runelite client
+
+3. Then open screenshot folder, and navigate to the `.runelite` directory
+
+4. Create a folder called `hitsounds`
+
+5. Add your sound as a {category}.wav file in `/.runelite/hitsounds/`
 
 Acceptable File Names:
 `normal.wav`
@@ -17,7 +24,7 @@ Acceptable File Names:
 `other.wav`
 
 # how your .runelite folder should look if you're adding custom sounds!
-![image](https://user-images.githubusercontent.com/5789682/193467218-f719644f-e180-419d-9bc2-45eed8fc89d7.png)
+https://user-images.githubusercontent.com/5789682/193469634-9fc30876-1e2d-46af-9035-68d2dff3ab8a.mp4
 
 ## Example sounds!
 https://user-images.githubusercontent.com/5789682/193466638-f290cfa2-5a99-44ee-9bcf-0253b2861fa6.mp4
