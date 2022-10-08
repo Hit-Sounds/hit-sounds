@@ -21,6 +21,10 @@ Acceptable File Names:
 `disease.wav`
 `miss.wav`
 `healing.wav`
+`shield.wav`
+`charge.wav`
+`uncharge.wav`
+`armour.wav`
 `other.wav`
 
 # how your .runelite folder should look if you're adding custom sounds!
