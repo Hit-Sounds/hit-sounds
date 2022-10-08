@@ -32,11 +32,20 @@ public interface HitSoundsConfig extends Config
 	String customHitsplatSection = "customHitsplatSection";
 
 	@ConfigItem(
+			keyName = "muteOthers",
+			name = "Mute Others",
+			description = "Prevent other players' sounds.",
+			section = "hitsplatToggleSection",
+			position = 1
+	)
+	default boolean muteOthers() {return false;}
+
+	@ConfigItem(
 			keyName = "normalHitBoolean",
 			name = "Normal",
 			description = "Enable/Disable Normal Hit Sounds",
 			section = "hitsplatToggleSection",
-			position = 1
+			position = 2
 	)
 	default boolean normalHitBoolean() {return true;}
 
@@ -46,7 +55,7 @@ public interface HitSoundsConfig extends Config
 			name = "Max",
 			description = "Enable/Disable Max Hit Sounds",
 			section = "hitsplatToggleSection",
-			position = 2
+			position = 3
 	)
 	default boolean maxHitBoolean() {return true;}
 
@@ -56,7 +65,7 @@ public interface HitSoundsConfig extends Config
 			name = "Poison",
 			description = "Enable/Disable Poison Hit Sounds",
 			section = "hitsplatToggleSection",
-			position = 3
+			position = 4
 	)
 	default boolean poisonHitBoolean() {return true;}
 
@@ -66,7 +75,7 @@ public interface HitSoundsConfig extends Config
 			name = "Venom",
 			description = "Enable/Disable Venom Hit Sounds",
 			section = "hitsplatToggleSection",
-			position = 4
+			position = 5
 	)
 	default boolean venomHitBoolean() {return true;}
 
@@ -76,7 +85,7 @@ public interface HitSoundsConfig extends Config
 			name = "Disease",
 			description = "Enable/Disable Disease Hit Sounds",
 			section = "hitsplatToggleSection",
-			position = 5
+			position = 6
 	)
 	default boolean diseaseHitBoolean() {return true;}
 
@@ -86,7 +95,7 @@ public interface HitSoundsConfig extends Config
 			name = "Miss",
 			description = "Enable/Disable Miss Hit Sounds",
 			section = "hitsplatToggleSection",
-			position = 6
+			position = 7
 	)
 	default boolean missHitBoolean() {return true;}
 
@@ -96,17 +105,52 @@ public interface HitSoundsConfig extends Config
 			name = "Healing",
 			description = "Enable/Disable Healing Hit Sounds",
 			section = "hitsplatToggleSection",
-			position = 7
+			position = 8
 	)
 	default boolean healingHitBoolean() {return true;}
 
+	@ConfigItem(
+			keyName = "shieldHitBoolean",
+			name = "Shield",
+			description = "Enable/Disable Shield Hit Sounds",
+			section = "hitsplatToggleSection",
+			position = 9
+	)
+	default boolean shieldHitBoolean() {return true;}
+
+	@ConfigItem(
+			keyName = "armourHitBoolean",
+			name = "Armour",
+			description = "Enable/Disable Armour Hit Sounds",
+			section = "hitsplatToggleSection",
+			position = 10
+	)
+	default boolean armourHitBoolean() {return true;}
+
+	@ConfigItem(
+			keyName = "chargeHitBoolean",
+			name = "Charge",
+			description = "Enable/Disable Charge Hit Sounds",
+			section = "hitsplatToggleSection",
+			position = 11
+	)
+	default boolean chargeHitBoolean() {return true;}
+
+	@ConfigItem(
+			keyName = "unchargeHitBoolean",
+			name = "Uncharge",
+			description = "Enable/Disable Uncharge Hit Sounds",
+			section = "hitsplatToggleSection",
+			position = 12
+	)
+	default boolean unchargeHitBoolean() {return true;}
 
 	@ConfigItem(
 			keyName = "otherHitBoolean",
 			name = "Other",
 			description = "Enable/Disable Other Hit Sounds",
 			section = "hitsplatToggleSection",
-			position = 8
+			position = 9
 	)
 	default boolean otherHitBoolean() {return true;}
 
@@ -174,11 +218,48 @@ public interface HitSoundsConfig extends Config
 	default SoundEffectSelectionEnum healingHitSound() {return SoundEffectSelectionEnum.IMPROVED_REFLEXES;}
 
 	@ConfigItem(
+			keyName = "shieldDefaultHitSound",
+			name = "Shield",
+			description = "Set Default Shield Hit Sound",
+			section = "defaultHitsplatSection",
+			position = 8
+	)
+	default SoundEffectSelectionEnum shieldHitSound() {return SoundEffectSelectionEnum.IMPROVED_REFLEXES;}
+
+	@ConfigItem(
+			keyName = "armourDefaultHitSound",
+			name = "Armour",
+			description = "Set Default Armour Hit Sound",
+			section = "defaultHitsplatSection",
+			position = 9
+	)
+	default SoundEffectSelectionEnum armourHitSound() {return SoundEffectSelectionEnum.IMPROVED_REFLEXES;}
+
+	@ConfigItem(
+			keyName = "chargeDefaultHitSound",
+			name = "Charge",
+			description = "Set Default Charge Hit Sound",
+			section = "defaultHitsplatSection",
+			position = 10
+	)
+	default SoundEffectSelectionEnum chargeHitSound() {return SoundEffectSelectionEnum.IMPROVED_REFLEXES;}
+
+	@ConfigItem(
+			keyName = "unchargeDefaultHitSound",
+			name = "Uncharge",
+			description = "Set Default Uncharge Hit Sound",
+			section = "defaultHitsplatSection",
+			position = 11
+	)
+	default SoundEffectSelectionEnum unchargeHitSound() {return SoundEffectSelectionEnum.IMPROVED_REFLEXES;}
+
+
+	@ConfigItem(
 			keyName = "otherDefaultHitSound",
 			name = "Other",
 			description = "Set Default Other Hit Sound",
 			section = "defaultHitsplatSection",
-			position = 8
+			position = 12
 	)
 	default SoundEffectSelectionEnum otherHitSound() {return SoundEffectSelectionEnum.MINING_TINK;}
 
@@ -205,5 +286,9 @@ public interface HitSoundsConfig extends Config
 			"disease.wav\n" +
 			"miss.wav\n" +
 			"healing.wav\n" +
+			"shield.wav\n" +
+			"armour.wav\n" +
+			"charge.wav\n" +
+			"uncharge.wav\n" +
 			"other.wav";}
 }

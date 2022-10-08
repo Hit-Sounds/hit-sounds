@@ -68,6 +68,10 @@ public class HitSoundsPlugin extends Plugin
 	public static final File DISEASE_FILE = new File(BASE_DIRECTORY, "disease.wav");
 	public static final File MISS_FILE = new File(BASE_DIRECTORY, "miss.wav");
 	public static final File HEALING_FILE = new File(BASE_DIRECTORY, "healing.wav");
+	public static final File SHIELD_FILE = new File(BASE_DIRECTORY, "shield.wav");
+	public static final File ARMOUR_FILE = new File(BASE_DIRECTORY, "armour.wav");
+	public static final File CHARGE_FILE = new File(BASE_DIRECTORY, "charge.wav");
+	public static final File UNCHARGE_FILE = new File(BASE_DIRECTORY, "uncharge.wav");
 	public static final File OTHER_FILE = new File(BASE_DIRECTORY, "other.wav");
 
 	private long lastClipMTime = CLIP_MTIME_UNLOADED;
@@ -90,16 +94,11 @@ public class HitSoundsPlugin extends Plugin
 	public void onHitsplatApplied(HitsplatApplied hitsplatApplied){
 		switch(hitsplatApplied.getHitsplat().getHitsplatType()){
 
-			case HitsplatID.DAMAGE_ME:
-			case HitsplatID.DAMAGE_ME_CYAN:
-			case HitsplatID.DAMAGE_ME_ORANGE:
-			case HitsplatID.DAMAGE_ME_WHITE:
-			case HitsplatID.DAMAGE_ME_YELLOW:
 			case HitsplatID.DAMAGE_OTHER:
-			case HitsplatID.DAMAGE_OTHER_CYAN:
-			case HitsplatID.DAMAGE_OTHER_WHITE:
-			case HitsplatID.DAMAGE_OTHER_YELLOW:
-			case HitsplatID.DAMAGE_OTHER_ORANGE:
+				if (config.muteOthers()){
+					break;
+				}
+			case HitsplatID.DAMAGE_ME:
 				if (!config.normalHitBoolean()){
 					break;
 				}
@@ -108,8 +107,11 @@ public class HitSoundsPlugin extends Plugin
 				};
 				break;
 
-			case HitsplatID.BLOCK_ME:
 			case HitsplatID.BLOCK_OTHER:
+				if (config.muteOthers()){
+					break;
+				}
+			case HitsplatID.BLOCK_ME:
 				if (!config.missHitBoolean()){
 					break;
 				}
@@ -119,10 +121,6 @@ public class HitSoundsPlugin extends Plugin
 				break;
 
 			case HitsplatID.DAMAGE_MAX_ME:
-			case HitsplatID.DAMAGE_MAX_ME_CYAN:
-			case HitsplatID.DAMAGE_MAX_ME_ORANGE:
-			case HitsplatID.DAMAGE_MAX_ME_WHITE:
-			case HitsplatID.DAMAGE_MAX_ME_YELLOW:
 				if (!config.maxHitBoolean()){
 					break;
 				}
@@ -163,6 +161,91 @@ public class HitSoundsPlugin extends Plugin
 					clientThread.invoke(() -> client.playSoundEffect(config.poisonHitSound().getID()));
 				}
 				break;
+
+			case HitsplatID.DAMAGE_OTHER_CYAN:
+				if (config.muteOthers()){
+					break;
+				}
+			case HitsplatID.DAMAGE_ME_CYAN:
+				if (!config.shieldHitBoolean()){
+					break;
+				}
+				if (!playCustomSound(HitSoundEnum.SHIELD)){
+					clientThread.invoke(() -> client.playSoundEffect(config.shieldHitSound().getID()));
+				}
+				break;
+			case HitsplatID.DAMAGE_MAX_ME_CYAN:
+				if (config.shieldHitBoolean() && config.maxHitBoolean()){
+					if (!playCustomSound(HitSoundEnum.SHIELD)){
+						clientThread.invoke(() -> client.playSoundEffect(config.shieldHitSound().getID()));
+					}
+					break;
+				}
+				break;
+
+			case HitsplatID.DAMAGE_OTHER_WHITE:
+				if (config.muteOthers()){
+					break;
+				}
+			case HitsplatID.DAMAGE_ME_WHITE:
+				if (!config.unchargeHitBoolean()){
+					break;
+				}
+				if (!playCustomSound(HitSoundEnum.UNCHARGE)){
+					clientThread.invoke(() -> client.playSoundEffect(config.unchargeHitSound().getID()));
+				}
+				break;
+			case HitsplatID.DAMAGE_MAX_ME_WHITE:
+				if (config.unchargeHitBoolean() && config.maxHitBoolean()){
+					if (!playCustomSound(HitSoundEnum.UNCHARGE)){
+						clientThread.invoke(() -> client.playSoundEffect(config.unchargeHitSound().getID()));
+					}
+					break;
+				}
+				break;
+
+			case HitsplatID.DAMAGE_OTHER_YELLOW:
+				if (config.muteOthers()){
+					break;
+				}
+			case HitsplatID.DAMAGE_ME_YELLOW:
+				if (!config.chargeHitBoolean()){
+					break;
+				}
+				if (!playCustomSound(HitSoundEnum.CHARGE)){
+					clientThread.invoke(() -> client.playSoundEffect(config.chargeHitSound().getID()));
+				}
+				break;
+			case HitsplatID.DAMAGE_MAX_ME_YELLOW:
+				if (config.chargeHitBoolean() && config.maxHitBoolean()){
+					if (!playCustomSound(HitSoundEnum.CHARGE)){
+						clientThread.invoke(() -> client.playSoundEffect(config.chargeHitSound().getID()));
+					}
+					break;
+				}
+				break;
+
+			case HitsplatID.DAMAGE_OTHER_ORANGE:
+				if (config.muteOthers()){
+					break;
+				}
+			case HitsplatID.DAMAGE_ME_ORANGE:
+				if (!config.armourHitBoolean()){
+					break;
+				}
+				if (!playCustomSound(HitSoundEnum.ARMOUR)){
+					clientThread.invoke(() -> client.playSoundEffect(config.armourHitSound().getID()));
+				}
+				break;
+			case HitsplatID.DAMAGE_MAX_ME_ORANGE:
+				if (config.armourHitBoolean() && config.maxHitBoolean()){
+					if (!playCustomSound(HitSoundEnum.ARMOUR)){
+						clientThread.invoke(() -> client.playSoundEffect(config.armourHitSound().getID()));
+					}
+					break;
+				}
+				break;
+
 			default:
 				if (!config.otherHitBoolean()){
 					break;
@@ -177,15 +260,11 @@ public class HitSoundsPlugin extends Plugin
 
 	// modified from the notifier default plugin:
 	// https://github.com/runelite/runelite/blob/63dd8af9b51757eb8140674d361a0473cf7e0441/runelite-client/src/main/java/net/runelite/client/Notifier.java#L446-L512
-	private boolean playCustomSound(HitSoundEnum hitSoundEnum)
+	private synchronized boolean playCustomSound(HitSoundEnum hitSoundEnum)
 	{
 		long currentMTime = hitSoundEnum.getFile().exists() ? hitSoundEnum.getFile().lastModified() : CLIP_MTIME_BUILTIN;
 		if (clip == null || currentMTime != lastClipMTime || !clip.isOpen())
 		{
-			if (clip != null)
-			{
-				clip.close();
-			}
 			try
 			{
 				clip = AudioSystem.getClip();
