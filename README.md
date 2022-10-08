@@ -3,6 +3,7 @@
 This plugin will make a sound on hitsplat.
 
 ## Adding a custom sound
+# NOTE: THE CHOSEN SOUND MUST BE 0.6 SECONDS OR LESS! It can be longer, but the longer it is, the weirder the results will be.
 1. Navigate to your .runelite folder
 
 2. You can right-click the screenshot button in the top right of the runelite client
