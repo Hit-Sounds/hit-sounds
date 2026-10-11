@@ -19,13 +19,20 @@ public interface HitSoundsConfig extends Config
 
 	@ConfigSection(
 			position = 2,
+			name = "Master Volume",
+			description = "Change master volume"
+	)
+	String masterVolumeSection = "masterVolumeSection";
+	
+	@ConfigSection(
+			position = 3,
 			name = "Default Hitsplat Sounds",
 			description = "Select default in-game hitsplat sounds"
 	)
 	String defaultHitsplatSection = "defaultHitsplatSection";
 
 	@ConfigSection(
-			position = 3,
+			position = 4,
 			name = "Custom Hitsplat Sounds",
 			description = "Select the path to your custom hitsplat sound [.wav], overrides default sounds!"
 	)
