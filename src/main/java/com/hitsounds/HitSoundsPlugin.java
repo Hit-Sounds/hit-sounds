@@ -281,8 +281,24 @@ public class HitSoundsPlugin extends Plugin
 				return false;
 			}
 		}
+		if (config.masterVolume() <= 0)
+		{
+			return true;
+		}
+		applyClipVolume();
 		clip.loop(1);
 		return true;
+	}
+
+	private void applyClipVolume()
+	{
+		if (!clip.isControlSupported(FloatControl.Type.MASTER_GAIN))
+		{
+			return;
+		}
+		FloatControl gain = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+		float decibels = (float) (20 * Math.log10(config.masterVolume() / 100d));
+		gain.setValue(Math.max(gain.getMinimum(), Math.min(gain.getMaximum(), decibels)));
 	}
 
 	private boolean tryLoadCustomSound(HitSoundEnum hitSoundEnum)
