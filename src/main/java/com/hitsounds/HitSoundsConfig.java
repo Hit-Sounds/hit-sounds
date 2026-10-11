@@ -5,6 +5,8 @@ import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 import net.runelite.client.config.ConfigSection;
+import net.runelite.client.config.Range;
+import net.runelite.client.config.Units;
 
 @ConfigGroup("hitsounds")
 public interface HitSoundsConfig extends Config
@@ -37,6 +39,17 @@ public interface HitSoundsConfig extends Config
 			description = "Select the path to your custom hitsplat sound [.wav], overrides default sounds!"
 	)
 	String customHitsplatSection = "customHitsplatSection";
+
+	@Range(max = 100)
+	@Units(Units.PERCENT)
+	@ConfigItem(
+			keyName = "masterVolume",
+			name = "Master volume",
+			description = "Volume of custom hit sounds.",
+			section = "masterVolumeSection",
+			position = 1
+	)
+	default int masterVolume() {return 100;}
 
 	@ConfigItem(
 			keyName = "muteOthers",
